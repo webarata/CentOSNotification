@@ -16,6 +16,8 @@
     "https://lists.centos.org/pipermail/centos-announce/*"
   ],
 
+  "options_page": "options.html",
+
   "background": {
     "scripts": ["js/common.js", "js/background.js"]
   },
