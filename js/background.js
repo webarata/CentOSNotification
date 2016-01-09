@@ -76,8 +76,9 @@ var getData = function() {
     if (equalStatus(getSavedStatus(), status)) {
       chrome.browserAction.setBadgeBackgroundColor({color: '#0000ff'});
     } else {
-      var notify = new Notification('通知のタイトル', {tag: 'tag', body: '通知の本文'});
-
+      if (localStorage['notification'] === 'true') {
+        var notify = new Notification('通知のタイトル', {tag: 'tag', body: '通知の本文'});
+      }
       chrome.browserAction.setBadgeBackgroundColor({color: '#ff0000'});
     }
 
