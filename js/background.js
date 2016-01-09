@@ -77,7 +77,9 @@ var getData = function() {
       chrome.browserAction.setBadgeBackgroundColor({color: '#0000ff'});
     } else {
       if (localStorage['notification'] === 'true') {
-        var notify = new Notification('通知のタイトル', {tag: 'tag', body: '通知の本文'});
+        var notify = new Notification('重要な更新があります', {
+          tag: 'tag', body: 'CentOSにCriticalもしくはImportantの更新が追加されました。', icon: '../image/icon64.png'
+        });
       }
       chrome.browserAction.setBadgeBackgroundColor({color: '#ff0000'});
     }
