@@ -1,9 +1,9 @@
 {
-  "name": "CentOS test1",
+  "name": "CentOS notification",
   "version": "0.1.0",
   "manifest_version": 2,
 
-  "description": "CentOS test1",
+  "description": "CentOSの重要な更新の通知をするChrome拡張です",
 
   "icons": {
     "16": "image/icon16.png",
@@ -19,12 +19,19 @@
     "scripts": ["common.js", "background.js"]
   },
 
+  "content_scripts": [
+    {
+      "matches": ["https://lists.centos.org/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+
   "browser_action": {
     "default_icon": {
       "19": "image/icon19.png",
       "38": "image/icon38.png"
     },
-    "default_title": "CentOS 1",
+    "default_title": "CentOS notification",
     "default_popup": "popup.html"
   }
 }
