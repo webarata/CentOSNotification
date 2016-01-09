@@ -16,13 +16,13 @@
   ],
 
   "background": {
-    "scripts": ["common.js", "background.js"]
+    "scripts": ["js/common.js", "js/background.js"]
   },
 
   "content_scripts": [
     {
       "matches": ["https://lists.centos.org/*"],
-      "js": ["contentScript.js"]
+      "js": ["js/contentScript.js"]
     }
   ],
 
