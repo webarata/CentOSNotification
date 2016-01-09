@@ -12,6 +12,7 @@
   },
 
   "permissions": [
+    "notifications",
     "https://lists.centos.org/pipermail/centos-announce/*"
   ],
 
