@@ -1,6 +1,6 @@
 {
   "name": "CentOS notification",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "manifest_version": 2,
 
   "description": "CentOSの重要な更新の通知をするChrome拡張です",
@@ -19,7 +19,8 @@
   "options_page": "options.html",
 
   "background": {
-    "scripts": ["js/common.js", "js/background.js"]
+    "scripts": ["js/common.js", "js/background.js"],
+    "persistent": true
   },
 
   "content_scripts": [
