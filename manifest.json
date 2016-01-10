@@ -6,9 +6,9 @@
   "description": "CentOSの重要な更新の通知をするChrome拡張です",
 
   "icons": {
-    "16": "image/icon16.png",
-    "64": "image/icon64.png",
-    "128": "image/icon128.png"
+    "16": "src/image/icon16.png",
+    "64": "src/image/icon64.png",
+    "128": "src/image/icon128.png"
   },
 
   "permissions": [
@@ -16,26 +16,26 @@
     "https://lists.centos.org/pipermail/centos-announce/*"
   ],
 
-  "options_page": "options.html",
+  "options_page": "src/html/options.html",
 
   "background": {
-    "scripts": ["js/common.js", "js/background.js"],
+    "scripts": ["src/js/common.js", "src/js/background.js"],
     "persistent": true
   },
 
   "content_scripts": [
     {
       "matches": ["https://lists.centos.org/*"],
-      "js": ["js/contentScript.js"]
+      "js": ["src/js/contentScript.js"]
     }
   ],
 
   "browser_action": {
     "default_icon": {
-      "19": "image/icon19.png",
-      "38": "image/icon38.png"
+      "19": "src/image/icon19.png",
+      "38": "src/image/icon38.png"
     },
     "default_title": "CentOS notification",
-    "default_popup": "popup.html"
+    "default_popup": "src/html/popup.html"
   }
 }
