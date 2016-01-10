@@ -16,7 +16,7 @@
 (function() {
   'use strict';
 
-  document.getElementById('newUrl').setAttribute('href', url);
+  document.getElementById('newUrl').setAttribute('href', CentOSNotif.url);
 
   document.getElementById('critical').innerText = CentOSNotif.getCriticalCount();
   document.getElementById('important').innerText = CentOSNotif.getImportantCount();
