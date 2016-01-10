@@ -94,3 +94,10 @@ var getData = function() {
 };
 
 getData();
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.method === 'getHighlight')
+    sendResponse({highlight: localStorage['highlight']});
+  else
+    sendResponse({});
+});
