@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var CentOS = CentOS || {};
+var CentOSNotif = CentOSNotif || {};
 
 (function() {
   'use strict';
 
-  CentOS.getCriticalCount = function() {
+  CentOSNotif.getCriticalCount = function() {
     return localStorage['criticalCount'] || 0;
   };
 
-  CentOS.getImportantCount = function() {
+  CentOSNotif.getImportantCount = function() {
     return localStorage['importantCount'] || 0;
   };
 
-  CentOS.getModerateCount = function() {
+  CentOSNotif.getModerateCount = function() {
     return localStorage['moderateCount'] || 0;
   };
 })();
