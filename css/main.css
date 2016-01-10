@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+body {
+  width: 9em;
+}
+
+th, td {
+  text-align: right;
+}
+
+a {
+  color: #0938c4;
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
