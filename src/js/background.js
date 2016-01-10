@@ -13,25 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var ajax = function(url, doneCallBack, failCallBack) {
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(data) {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        doneCallBack(xhr.responseText);
-      } else {
-        failCallBack(xhr.statusText)
-      }
-    }
-  };
-  xhr.onerror = function(e) {
-    failCallback(xhr.statusText);
-  };
-
-  xhr.open('GET', url, true);
-  xhr.send();
-};
-
 var getStatus = function(responseText) {
   var count = responseText.length;
   var criticalCount = (count - responseText.replace(/Critical/g, '').length) / 'Critical'.length;
@@ -85,7 +66,7 @@ var equalStatus = function(status1, status2) {
 };
 
 var getData = function() {
-  ajax(url, function(responseText) {
+  CentOSNotif.ajax(CentOSNotif.url, function(responseText) {
     var status = getStatus(responseText);
 
     if (equalStatus(getSavedStatus(), status)) {

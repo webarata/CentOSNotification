@@ -13,12 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var MONTH_NAME = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+var CentOSNotif = CentOSNotif || {};
 
-// 当日から、検索するURLを決定する
-var today = new Date();
-var dateUrl = today.getFullYear() + '-' + MONTH_NAME[today.getMonth()] + '/date.html';
-var url = 'https://lists.centos.org/pipermail/centos-announce/' + dateUrl;
+(function() {
+  'use strict';
+
+  CentOSNotif.MONTH_NAME = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  // 当日から、検索するURLを決定する
+  var today = new Date();
+  var dateUrl = today.getFullYear() + '-' + CentOSNotif.MONTH_NAME[today.getMonth()] + '/date.html';
+  CentOSNotif.url = 'https://lists.centos.org/pipermail/centos-announce/' + dateUrl;
+
+  /**
+   * 汎用的なAjaxのGETリクエスト
+   * @param url アクセスするURL
+   * @param doneCallBack Ajaxの成功の時のコールバック
+   * @param failCallBack Ajaxの失敗の時のコールバック
+   */
+  CentOSNotif.ajax = function(url, doneCallBack, failCallBack) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(data) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          doneCallBack(xhr.responseText);
+        } else {
+          failCallBack(xhr.statusText)
+        }
+      }
+    };
+    xhr.onerror = function(e) {
+      failCallback(xhr.statusText);
+    };
+
+    xhr.open('GET', url, true);
+    xhr.send();
+  };
+})();
