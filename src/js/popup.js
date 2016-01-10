@@ -1,5 +1,5 @@
 document.getElementById('newUrl').setAttribute('href', url);
 
-document.getElementById('critical').innerText = localStorage['criticalCount'];
-document.getElementById('important').innerText = localStorage['importantCount'];
-document.getElementById('moderate').innerText = localStorage['moderateCount'];
+document.getElementById('critical').innerText = CentOS.getCriticalCount();
+document.getElementById('important').innerText = CentOS.getImportantCount();
+document.getElementById('moderate').innerText = CentOS.getModerateCount();
