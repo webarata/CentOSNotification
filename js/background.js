@@ -101,3 +101,5 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   else
     sendResponse({});
 });
+
+setInterval(getData, 3600 * 1000);
