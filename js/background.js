@@ -93,8 +93,6 @@ var getData = function() {
   });
 };
 
-getData();
-
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.method === 'getHighlight')
     sendResponse({highlight: localStorage['highlight']});
@@ -102,4 +100,27 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     sendResponse({});
 });
 
-setInterval(getData, 3600 * 1000);
+function getIntervalMinute() {
+  var intervalMinute = localStorage['intervalMinute'] || '60';
+  if (intervalMinute == null || intervalMinute.match(/[^0-9]+/)) {
+    intervalMinute = 60
+  }
+
+  return parseInt(intervalMinute, 10);
+}
+
+getData();
+
+var timer;
+var minute;
+setInterval(function() {
+  if (timer == null) {
+    minute = getIntervalMinute();
+    timer = setInterval(getData, minute * 60 * 1000);
+  }
+  if (minute !== getIntervalMinute()) {
+    timer.clear();
+    minute = getIntervalMinute();
+    timer = setInterval(getData, minute * 60 * 1000);
+  }
+}, 10 * 1000);
