@@ -18,15 +18,22 @@ var CentOSNotif = CentOSNotif || {};
 (function() {
   'use strict';
 
-  CentOSNotif.getCriticalCount = function() {
+  CentOSNotif.loadCriticalCount = function() {
     return localStorage['criticalCount'] || 0;
   };
 
-  CentOSNotif.getImportantCount = function() {
+  CentOSNotif.loadImportantCount = function() {
     return localStorage['importantCount'] || 0;
   };
 
-  CentOSNotif.getModerateCount = function() {
+  CentOSNotif.loadModerateCount = function() {
     return localStorage['moderateCount'] || 0;
+  };
+
+  CentOSNotif.saveStatus = function(status) {
+    localStorage['criticalCount'] = status.counts[0];
+    localStorage['importantCount'] = status.counts[1];
+    localStorage['moderateCount'] = status.counts[2];
+    localStorage['lastUpdateMonth'] = status.lastUpdateMonth;
   };
 })();

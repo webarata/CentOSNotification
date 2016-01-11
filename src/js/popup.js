@@ -18,7 +18,7 @@
 
   document.getElementById('newUrl').setAttribute('href', CentOSNotif.url);
 
-  document.getElementById('critical').innerText = CentOSNotif.getCriticalCount();
-  document.getElementById('important').innerText = CentOSNotif.getImportantCount();
-  document.getElementById('moderate').innerText = CentOSNotif.getModerateCount();
+  document.getElementById('critical').innerText = CentOSNotif.loadCriticalCount();
+  document.getElementById('important').innerText = CentOSNotif.loadImportantCount();
+  document.getElementById('moderate').innerText = CentOSNotif.loadModerateCount();
 })();

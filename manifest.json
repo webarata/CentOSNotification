@@ -19,7 +19,11 @@
   "options_page": "src/html/options.html",
 
   "background": {
-    "scripts": ["src/js/common.js", "src/js/background.js"],
+    "scripts": [
+      "src/js/common.js",
+      "src/js/model/config.js",
+      "src/js/background.js"
+    ],
     "persistent": true
   },
 
