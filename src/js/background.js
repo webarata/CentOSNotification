@@ -82,14 +82,14 @@ var CentOSNotif = CentOSNotif || {};
     }
   });
 
-  function getIntervalMinute() {
+  var getIntervalMinute = function() {
     var intervalMinute = CentOSNotif.loadIntervalMinute() || '60';
     if (intervalMinute == null || intervalMinute.match(/[^0-9]+/)) {
       intervalMinute = 60;
     }
 
     return parseInt(intervalMinute, 10);
-  }
+  };
 
   getData();
 
