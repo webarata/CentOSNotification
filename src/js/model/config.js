@@ -50,12 +50,24 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   // options
+  CentOSNotif.saveNotification = function(notification) {
+    localstorage.notification = notification;
+  };
+
   CentOSNotif.loadNotification = function() {
     return localStorage.notification;
   };
 
+  CentOSNotif.saveHighlight = function(highlight) {
+    localstorage.highlight = highlight;
+  };
+
   CentOSNotif.loadHighlight = function() {
     return localStorage.highlight;
+  };
+
+  CentOSNotif.saveIntervalMinute = function(intervalMinute) {
+    localstorage.intervalMinute = intervalMinute;
   };
 
   CentOSNotif.loadIntervalMinute = function() {

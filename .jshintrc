@@ -11,6 +11,7 @@
   "browser": true,
   "devel": true,
   "eqnull": true,
+  "expr": true,
   "globals": {
     "chrome": false
   }

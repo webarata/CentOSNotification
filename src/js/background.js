@@ -53,7 +53,6 @@ var CentOSNotif = CentOSNotif || {};
     CentOSNotif.ajax(CentOSNotif.url, function(responseText) {
       var status = getStatus(responseText);
 
-      console.log(CentOSNotif.loadStatus(), status);
       if (equalStatus(CentOSNotif.loadStatus(), status)) {
         chrome.browserAction.setBadgeBackgroundColor({color: '#0000ff'});
       } else {
