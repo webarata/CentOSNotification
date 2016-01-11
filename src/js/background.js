@@ -76,7 +76,7 @@ var CentOSNotif = CentOSNotif || {};
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.method === 'getHighlight') {
       sendResponse({highlight: CentOSNotif.loadHighlight()});
-    }else {
+    } else {
       sendResponse({});
     }
   });
