@@ -19,14 +19,11 @@ var CentOSNotif = CentOSNotif || {};
   'use strict';
 
   var getStatus = function(responseText) {
-    var count = responseText.length;
-    var criticalCount = (count - responseText.replace(/Critical/g, '').length) / 'Critical'.length;
-    var importantCount = (count - responseText.replace(/Important/g, '').length) / 'Important'.length;
-    var moderateCount = (count - responseText.replace(/Moderate/g, '').length) / 'Moderate'.length;
+    var criticalCount = CentOSNotif.countString(responseText, 'Critical');
+    var importantCount = CentOSNotif.countString(responseText, 'Important');
+    var moderateCount = CentOSNotif.countString(responseText, 'Moderate');
 
-    var date = new Date();
-    var month = date.getMonth() + 1;
-    var lastUpdateMonth = date.getFullYear().toString() + (month < 10 ? '0' + month : month);
+    var lastUpdateMonth = CentOSNotif.getYearMohth(new Date());
 
     return {
       counts: [criticalCount, importantCount, moderateCount],
