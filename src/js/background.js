@@ -31,13 +31,6 @@ var CentOSNotif = CentOSNotif || {};
     };
   };
 
-  var setLocalStrage = function(status) {
-    localStorage['criticalCount'] = status.counts[0];
-    localStorage['importantCount'] = status.counts[1];
-    localStorage['moderateCount'] = status.counts[2];
-    localStorage['lastUpdateMonth'] = status.lastUpdateMonth;
-  };
-
   var getSavedStatus = function() {
     var criticalCount = localStorage['criticalCount'] || 0;
     var importantCount = localStorage['importantCount'] || 0;
@@ -82,7 +75,7 @@ var CentOSNotif = CentOSNotif || {};
         chrome.browserAction.setBadgeBackgroundColor({color: '#ff0000'});
       }
 
-      setLocalStrage(status);
+      CentOSNotif.saveStatus(status);
 
       chrome.browserAction.setBadgeText({text: (status.counts[0] + status.counts[1]).toString()});
     }, function(statusText) {
