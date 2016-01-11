@@ -16,6 +16,8 @@
 var CentOSNotif = CentOSNotif || {};
 
 (function() {
+  'use strict';
+
   var notification = document.getElementsByName('notification');
 
   notification[0].addEventListener('change', function() {

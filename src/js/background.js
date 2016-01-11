@@ -16,6 +16,8 @@
 var CentOSNotif = CentOSNotif || {};
 
 (function() {
+  'use strict';
+
   var getStatus = function(responseText) {
     var count = responseText.length;
     var criticalCount = (count - responseText.replace(/Critical/g, '').length) / 'Critical'.length;
