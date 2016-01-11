@@ -42,7 +42,7 @@ var CentOSNotif = CentOSNotif || {};
       return true;
     }
     for (i = 0; i < status1.counts.length; i++) {
-      if (status1.counts[i] !== status2.counts[i]) {
+      if (status1.counts[i].toString() !== status2.counts[i].toString()) {
         return false;
       }
     }
@@ -53,6 +53,7 @@ var CentOSNotif = CentOSNotif || {};
     CentOSNotif.ajax(CentOSNotif.url, function(responseText) {
       var status = getStatus(responseText);
 
+      console.log(CentOSNotif.loadStatus(), status);
       if (equalStatus(CentOSNotif.loadStatus(), status)) {
         chrome.browserAction.setBadgeBackgroundColor({color: '#0000ff'});
       } else {
