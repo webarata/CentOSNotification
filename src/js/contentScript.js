@@ -16,6 +16,8 @@
 var CentOSNotif = CentOSNotif || {};
 
 (function() {
+  'use strict';
+
   chrome.runtime.sendMessage({method: 'getHighlight'}, function(response) {
     if (response.highlight != null && response.highlight === 'true') {
       var html = document.getElementsByTagName('body')[0].innerHTML;
