@@ -29,6 +29,27 @@ var CentOSNotif = CentOSNotif || {};
   CentOSNotif.url = 'https://lists.centos.org/pipermail/centos-announce/' + dateUrl;
 
   /**
+   * 文字列の中の特定の文字列の出現数をカウントする
+   * @param text 対象の文字列
+   * @param str カウントする文字列
+   * @returns {number} 出現数
+   */
+  CentOSNotif.countString = function(text, str) {
+    var count = text.length;
+    return (count - text.replace(new RegExp(str, 'g'), '').length) / str.length;
+  };
+
+  /**
+   * YYYYMM形式の文字列を返す
+   * @param date 対象となる日付
+   * @returns {string} YYYYMM形式の文字列
+   */
+  CentOSNotif.getYearMohth = function(date) {
+    var month = date.getMonth() + 1;
+    return date.getFullYear().toString() + (month < 10 ? '0' + month : month);
+  };
+
+  /**
    * 汎用的なAjaxのGETリクエスト
    * @param url アクセスするURL
    * @param doneCallBack Ajaxの成功の時のコールバック
