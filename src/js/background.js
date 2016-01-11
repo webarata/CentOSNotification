@@ -31,18 +31,6 @@ var CentOSNotif = CentOSNotif || {};
     };
   };
 
-  var getSavedStatus = function() {
-    var criticalCount = localStorage['criticalCount'] || 0;
-    var importantCount = localStorage['importantCount'] || 0;
-    var moderateCount = localStorage['moderateCount'] || 0;
-    var lastUpdateMonth = localStorage['lastUpdateMonth'] || '0';
-
-    return {
-      counts: [criticalCount, importantCount, moderateCount],
-      lastUpdateMonth: lastUpdateMonth
-    };
-  };
-
   var equalStatus = function(status1, status2) {
     if (status1.lastUpdateMonth != status2.lastUpdateMonth) {
       for (var i = 0; i < status2.counts.length; i++) {
@@ -64,7 +52,7 @@ var CentOSNotif = CentOSNotif || {};
     CentOSNotif.ajax(CentOSNotif.url, function(responseText) {
       var status = getStatus(responseText);
 
-      if (equalStatus(getSavedStatus(), status)) {
+      if (equalStatus(CentOSNotif.loadStatus(), status)) {
         chrome.browserAction.setBadgeBackgroundColor({color: '#0000ff'});
       } else {
         if (localStorage['notification'] === 'true') {
