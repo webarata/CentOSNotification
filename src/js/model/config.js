@@ -48,4 +48,17 @@ var CentOSNotif = CentOSNotif || {};
       lastUpdateMonth: lastUpdateMonth
     };
   };
+
+  // options
+  CentOSNotif.loadNotification = function() {
+    return localStorage['notification'];
+  };
+
+  CentOSNotif.loadHighlight = function() {
+    return localStorage['highlight'];
+  };
+
+  CentOSNotif.loadIntervalMinute = function() {
+    return localStorage['intervalMinute'];
+  };
 })();
