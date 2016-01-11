@@ -19,29 +19,29 @@ var CentOSNotif = CentOSNotif || {};
   'use strict';
 
   CentOSNotif.loadCriticalCount = function() {
-    return localStorage['criticalCount'] || 0;
+    return localStorage.criticalCount || 0;
   };
 
   CentOSNotif.loadImportantCount = function() {
-    return localStorage['importantCount'] || 0;
+    return localStorage.importantCount || 0;
   };
 
   CentOSNotif.loadModerateCount = function() {
-    return localStorage['moderateCount'] || 0;
+    return localStorage.moderateCount || 0;
   };
 
   CentOSNotif.saveStatus = function(status) {
-    localStorage['criticalCount'] = status.counts[0];
-    localStorage['importantCount'] = status.counts[1];
-    localStorage['moderateCount'] = status.counts[2];
-    localStorage['lastUpdateMonth'] = status.lastUpdateMonth;
+    localStorage.criticalCount = status.counts[0];
+    localStorage.importantCount = status.counts[1];
+    localStorage.moderateCount = status.counts[2];
+    localStorage.lastUpdateMonth = status.lastUpdateMonth;
   };
 
   CentOSNotif.loadStatus = function() {
-    var criticalCount = localStorage['criticalCount'] || 0;
-    var importantCount = localStorage['importantCount'] || 0;
-    var moderateCount = localStorage['moderateCount'] || 0;
-    var lastUpdateMonth = localStorage['lastUpdateMonth'] || '0';
+    var criticalCount = localStorage.criticalCount || 0;
+    var importantCount = localStorage.importantCount || 0;
+    var moderateCount = localStorage.moderateCount || 0;
+    var lastUpdateMonth = localStorage.lastUpdateMonth || '0';
 
     return {
       counts: [criticalCount, importantCount, moderateCount],
@@ -51,14 +51,14 @@ var CentOSNotif = CentOSNotif || {};
 
   // options
   CentOSNotif.loadNotification = function() {
-    return localStorage['notification'];
+    return localStorage.notification;
   };
 
   CentOSNotif.loadHighlight = function() {
-    return localStorage['highlight'];
+    return localStorage.highlight;
   };
 
   CentOSNotif.loadIntervalMinute = function() {
-    return localStorage['intervalMinute'];
+    return localStorage.intervalMinute;
   };
 })();

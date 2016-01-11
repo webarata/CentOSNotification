@@ -35,7 +35,7 @@ var CentOSNotif = CentOSNotif || {};
   });
 
   highlight[1].addEventListener('change', function() {
-    localstorage['highlight'] = false;
+    localStorage['highlight'] = false;
   });
 
   var intervalMinute = document.getElementById('intervalMinute');
