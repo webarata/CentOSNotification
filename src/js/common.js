@@ -62,12 +62,12 @@ var CentOSNotif = CentOSNotif || {};
         if (xhr.status === 200) {
           doneCallBack(xhr.responseText);
         } else {
-          failCallBack(xhr.statusText)
+          failCallBack(xhr.statusText);
         }
       }
     };
     xhr.onerror = function(e) {
-      failCallback(xhr.statusText);
+      failCallBack(xhr.statusText);
     };
 
     xhr.open('GET', url, true);

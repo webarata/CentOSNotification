@@ -32,16 +32,17 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   var equalStatus = function(status1, status2) {
-    if (status1.lastUpdateMonth != status2.lastUpdateMonth) {
-      for (var i = 0; i < status2.counts.length; i++) {
+    var i;
+    if (status1.lastUpdateMonth !== status2.lastUpdateMonth) {
+      for (i = 0; i < status2.counts.length; i++) {
         if (status2.counts[i] > 0) {
           return false;
         }
       }
       return true;
     }
-    for (var i = 0; i < status1.counts.length; i++) {
-      if (status1.counts[i] != status2.counts[i]) {
+    for (i = 0; i < status1.counts.length; i++) {
+      if (status1.counts[i] !== status2.counts[i]) {
         return false;
       }
     }
@@ -55,7 +56,7 @@ var CentOSNotif = CentOSNotif || {};
       if (equalStatus(CentOSNotif.loadStatus(), status)) {
         chrome.browserAction.setBadgeBackgroundColor({color: '#0000ff'});
       } else {
-        if (localStorage['notification'] === 'true') {
+        if (CentOSNotif.loadNotification() === 'true') {
           var notify = new Notification('重要な更新があります', {
             tag: 'tag', body: 'CentOSにCriticalもしくはImportantの更新が追加されました。', icon: '../image/icon64.png'
           });
@@ -73,16 +74,17 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.method === 'getHighlight')
-      sendResponse({highlight: localStorage['highlight']});
-    else
+    if (request.method === 'getHighlight') {
+      sendResponse({highlight: CentOSNotif.loadHighlight()});
+    }else {
       sendResponse({});
+    }
   });
 
   function getIntervalMinute() {
-    var intervalMinute = localStorage['intervalMinute'] || '60';
+    var intervalMinute = CentOSNotif.loadIntervalMinute() || '60';
     if (intervalMinute == null || intervalMinute.match(/[^0-9]+/)) {
-      intervalMinute = 60
+      intervalMinute = 60;
     }
 
     return parseInt(intervalMinute, 10);
