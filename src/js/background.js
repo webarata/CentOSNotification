@@ -58,7 +58,7 @@ var CentOSNotif = CentOSNotif || {};
       } else {
         if (CentOSNotif.loadNotification() === 'true') {
           new Notification('重要な更新があります', {
-            tag: 'tag', body: 'CentOSにCriticalもしくはImportantの更新が追加されました。', icon: '../image/icon64.png'
+            tag: 'tag', body: 'CentOSにCriticalもしくはImportantの更新が追加されました。', icon: '/src//image/icon64.png'
           });
         }
         chrome.browserAction.setBadgeBackgroundColor({color: '#ff0000'});
