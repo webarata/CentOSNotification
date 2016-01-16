@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48d3a567-30d4-409c-8c84-420606a0205a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/html/options.html" afterPath="$PROJECT_DIR$/src/html/options.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/model/config.js" afterPath="$PROJECT_DIR$/src/js/model/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/options.js" afterPath="$PROJECT_DIR$/src/js/options.js" />
-    </list>
+    <list default="true" id="48d3a567-30d4-409c-8c84-420606a0205a" name="Default" comment="" />
     <ignored path="CentOSNotification.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
