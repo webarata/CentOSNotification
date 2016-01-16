@@ -18,13 +18,23 @@ var CentOSNotif = CentOSNotif || {};
 (function() {
   'use strict';
 
+  var replaceHtml = function(str, replaceStr, color, backgroundColor) {
+    var span = '<span style="color: ' + color + ';';
+    if (backgroundColor) {
+      span = span + ' background-color: ' + backgroundColor + ';';
+    }
+    span = span + '">' + replaceStr + '</span>';
+
+    return str.replace(new RegExp(replaceStr, 'g'), span);
+  };
+
   chrome.runtime.sendMessage({method: 'getHighlight'}, function(response) {
     if (response.highlight != null && response.highlight === 'true') {
       var html = document.getElementsByTagName('body')[0].innerHTML;
 
-      html = html.replace(/Moderate/g, '<span style="color: black;">Moderate</span>');
-      html = html.replace(/Important/g, '<span style="color: red;">Important</span>');
-      html = html.replace(/Critical/g, '<span style="color: red; background-color: yellow;">Critical</span>');
+      html = replaceHtml(html, 'Moderate', 'black');
+      html = replaceHtml(html, 'Important', 'red');
+      html = replaceHtml(html, 'Critical', 'red', 'yellow');
 
       document.getElementsByTagName('body')[0].innerHTML = html;
     }
