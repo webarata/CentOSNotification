@@ -18,23 +18,23 @@ var CentOSNotif = CentOSNotif || {};
 (function() {
   'use strict';
 
-  var replaceHtml = function(str, replaceStr, color, backgroundColor) {
-    var span = '<span style="color: ' + color + ';';
+  var replaceAll = function(str, pattern, color, backgroundColor) {
+    var replacement = '<span style="color: ' + color + ';';
     if (backgroundColor) {
-      span = span + ' background-color: ' + backgroundColor + ';';
+      replacement = replacement + ' background-color: ' + backgroundColor + ';';
     }
-    span = span + '">' + replaceStr + '</span>';
+    replacement = replacement + '">' + pattern + '</span>';
 
-    return str.replace(new RegExp(replaceStr, 'g'), span);
+    return str.replace(new RegExp(pattern, 'g'), replacement);
   };
 
   chrome.runtime.sendMessage({method: 'getHighlight'}, function(response) {
     if (response.highlight != null && response.highlight === 'true') {
       var html = document.getElementsByTagName('body')[0].innerHTML;
 
-      html = replaceHtml(html, 'Moderate', 'black');
-      html = replaceHtml(html, 'Important', 'red');
-      html = replaceHtml(html, 'Critical', 'red', 'yellow');
+      html = replaceAll(html, 'Moderate', 'black');
+      html = replaceAll(html, 'Important', 'red');
+      html = replaceAll(html, 'Critical', 'red', 'yellow');
 
       document.getElementsByTagName('body')[0].innerHTML = html;
     }
