@@ -51,7 +51,7 @@ var CentOSNotif = CentOSNotif || {};
 
   // options
   CentOSNotif.saveNotification = function(notification) {
-    localstorage.notification = notification;
+    localStorage.notification = notification;
   };
 
   CentOSNotif.loadNotification = function() {
@@ -59,7 +59,7 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   CentOSNotif.saveHighlight = function(highlight) {
-    localstorage.highlight = highlight;
+    localStorage.highlight = highlight;
   };
 
   CentOSNotif.loadHighlight = function() {
@@ -67,7 +67,7 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   CentOSNotif.saveIntervalMinute = function(intervalMinute) {
-    localstorage.intervalMinute = intervalMinute;
+    localStorage.intervalMinute = intervalMinute;
   };
 
   CentOSNotif.loadIntervalMinute = function() {

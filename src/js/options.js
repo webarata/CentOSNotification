@@ -21,33 +21,33 @@ var CentOSNotif = CentOSNotif || {};
   var notification = document.getElementsByName('notification');
 
   notification[0].addEventListener('change', function() {
-    localStorage.notification = 'true';
+    CentOSNotif.saveNotification('true');
   });
 
   notification[1].addEventListener('change', function() {
-    localStorage.notification = 'false';
+    CentOSNotif.saveNotification('false');
   });
 
   var highlight = document.getElementsByName('highlight');
 
   highlight[0].addEventListener('change', function() {
-    localStorage.highlight = 'true';
+    CentOSNotif.saveHighlight('true');
   });
 
   highlight[1].addEventListener('change', function() {
-    localStorage.highlight = 'false';
+    CentOSNotif.saveHighlight('false');
   });
 
   var intervalMinute = document.getElementById('intervalMinute');
 
   intervalMinute.addEventListener('input', function() {
     this.value = this.value.replace(/[^0-9]/, '');
-    localStorage.intervalMinute = this.value === '' ? 60 : this.value;
+    CentOSNotif.saveIntervalMinute(this.value === '' ? 60 : this.value);
   });
 
   document.body.onload = function() {
-    localStorage.notification === 'true' ? notification[0].checked = true : notification[1].checked = true;
-    localStorage.highlight === 'true' ? highlight[0].checked = true : highlight[1].checked = true;
-    intervalMinute.value = localStorage.intervalMinute == null ? 60 : localStorage.intervalMinute;
+    CentOSNotif.saveNotification('true' ? notification[0].checked = true : notification[1].checked = true);
+    CentOSNotif.saveHighlight('true' ? highlight[0].checked = true : highlight[1].checked = true);
+    intervalMinute.value = CentOSNotif.loadIntervalMinute() == null ? 60 : CentOSNotif.loadIntervalMinute();
   };
 })();
