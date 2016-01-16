@@ -18,14 +18,14 @@ var CentOSNotif = CentOSNotif || {};
 (function() {
   'use strict';
 
-  CentOSNotif.MONTH_NAME = [
+  var MONTH_NAME = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
 
   // 当日から、検索するURLを決定する
   var today = new Date();
-  var dateUrl = today.getFullYear() + '-' + CentOSNotif.MONTH_NAME[today.getMonth()] + '/date.html';
+  var dateUrl = today.getFullYear() + '-' + MONTH_NAME[today.getMonth()] + '/date.html';
   CentOSNotif.url = 'https://lists.centos.org/pipermail/centos-announce/' + dateUrl;
 
   /**
