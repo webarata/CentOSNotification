@@ -50,6 +50,15 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   // options
+  CentOSNotif.saveLastUpdateDate = function(lastUpdateDate) {
+    localStorage.lastUpdateDate = lastUpdateDate;
+  };
+
+  CentOSNotif.loadLastUpdateDate = function() {
+    var lastUpdateDate = localStorage.lastUpdateDate;
+    return lastUpdateDate ? lastUpdateDate : '-';
+  };
+
   CentOSNotif.saveNotification = function(notification) {
     localStorage.notification = notification;
   };

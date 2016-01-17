@@ -50,6 +50,7 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   var getData = function() {
+    CentOSNotif.saveLastUpdateDate(CentOSNotif.formatDate(new Date()));
     CentOSNotif.ajax(CentOSNotif.url, function(responseText) {
       var status = getStatus(responseText);
 

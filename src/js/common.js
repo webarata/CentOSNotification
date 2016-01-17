@@ -73,4 +73,9 @@ var CentOSNotif = CentOSNotif || {};
     xhr.open('GET', url, true);
     xhr.send();
   };
+
+  CentOSNotif.formatDate = function(date) {
+    return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' +
+        date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+  };
 })();
