@@ -95,14 +95,17 @@ var CentOSNotif = CentOSNotif || {};
   var timer;
   var minute;
   setInterval(function() {
-    if (timer == null) {
+    var resetTimer = function() {
       minute = getIntervalMinute();
       timer = setInterval(getData, minute * 60 * 1000);
+    };
+
+    if (timer == null) {
+      resetTimer();
     }
     if (minute !== getIntervalMinute()) {
       timer.clear();
-      minute = getIntervalMinute();
-      timer = setInterval(getData, minute * 60 * 1000);
+      resetTimer();
     }
   }, 10 * 1000);
 })();
