@@ -4,4 +4,4 @@ CentOSのメーリングリストの重要な更新の件数を通知する、Ch
 
 ## ライセンス
 
-Apache 2.0 License
+MIT
