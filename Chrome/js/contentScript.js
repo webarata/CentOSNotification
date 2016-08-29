@@ -14,7 +14,7 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   chrome.runtime.sendMessage({method: 'getHighlight'}, response => {
-    if (response.highlight !== null && response.highlight === 'true') {
+    if (response.highlight !== undefined && response.highlight === 'true') {
       let html = document.getElementsByTagName('body')[0].innerHTML;
 
       html = replaceAll(html, 'Moderate', 'black');

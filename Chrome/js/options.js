@@ -25,14 +25,15 @@ var CentOSNotif = CentOSNotif || {};
 
   const intervalMinute = document.getElementById('intervalMinute');
 
-  intervalMinute.addEventListener('input', () => {
-    this.value = this.value.replace(/[^0-9]/, '');
-    CentOSNotif.saveIntervalMinute(this.value === '' ? 60 : this.value);
+  intervalMinute.addEventListener('input', (e) => {
+    cnsoole.info(intervalMinute);
+    const minuteDom = e.target;
+    minuteDom.value = minuteDom.value.replace(/[^0-9]/, '');
+    CentOSNotif.saveIntervalMinute(minuteDom.value === '' ? 60 : minuteDom.value);
   });
 
   document.body.onload = () => {
     CentOSNotif.saveNotification('true' ? notification[0].checked = true : notification[1].checked = true);
     CentOSNotif.saveHighlight('true' ? highlight[0].checked = true : highlight[1].checked = true);
-    intervalMinute.value = CentOSNotif.loadIntervalMinute() === undefined ? 60 : CentOSNotif.loadIntervalMinute();
-  };
+    intervalMinute.value = CentOSNotif.loadIntervalMinute() === undefined ? 60 : CentOSNotif.loadIntervalMinute();};
 })();

@@ -3,7 +3,9 @@ var CentOSNotif = CentOSNotif || {};
 (function() {
   'use strict';
 
-  var getStatus = function(responseText) {
+  const CHECK_SITE_ALARM_NAME = 'CHECK_SITE';
+
+  function getStatus(responseText) {
     var criticalCount = CentOSNotif.countString(responseText, 'Critical');
     var importantCount = CentOSNotif.countString(responseText, 'Important');
     var moderateCount = CentOSNotif.countString(responseText, 'Moderate');
@@ -14,9 +16,9 @@ var CentOSNotif = CentOSNotif || {};
       counts: [criticalCount, importantCount, moderateCount],
       lastUpdateMonth: lastUpdateMonth
     };
-  };
+  }
 
-  var equalStatus = function(status1, status2) {
+  function equalStatus(status1, status2) {
     var i;
     if (status1.lastUpdateMonth !== status2.lastUpdateMonth) {
       for (i = 0; i < status2.counts.length; i++) {
@@ -32,9 +34,9 @@ var CentOSNotif = CentOSNotif || {};
       }
     }
     return true;
-  };
+  }
 
-  var getData = function() {
+  function getData() {
     CentOSNotif.saveLastUpdateDate(CentOSNotif.formatDate(new Date()));
     CentOSNotif.ajax(CentOSNotif.url, function(responseText) {
       var status = getStatus(responseText);
@@ -44,7 +46,7 @@ var CentOSNotif = CentOSNotif || {};
       } else {
         if (CentOSNotif.loadNotification() === 'true') {
           new Notification('重要な更新があります', {
-            tag: 'tag', body: 'CentOSにCriticalもしくはImportantの更新が追加されました。', icon: '/src//image/icon64.png'
+            tag: 'tag', body: 'CentOSにCriticalもしくはImportantの更新が追加されました。', icon: '/image/icon64.png'
           });
         }
         chrome.browserAction.setBadgeBackgroundColor({color: '#ff0000'});
@@ -57,9 +59,9 @@ var CentOSNotif = CentOSNotif || {};
       chrome.browserAction.setBadgeText({text: '-'});
       chrome.browserAction.setBadgeBackgroundColor({color: [0, 0, 0, 100]});
     });
-  };
+  }
 
-  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.method === 'getHighlight') {
       sendResponse({highlight: CentOSNotif.loadHighlight()});
     } else {
@@ -67,31 +69,27 @@ var CentOSNotif = CentOSNotif || {};
     }
   });
 
-  var getIntervalMinute = function() {
+  function getIntervalMinute() {
     var intervalMinute = CentOSNotif.loadIntervalMinute() || '60';
-    if (intervalMinute === undifined || intervalMinute.match(/[^0-9]+/)) {
+    if (intervalMinute === undefined || intervalMinute.match(/[^0-9]+/)) {
       intervalMinute = 60;
     }
 
     return parseInt(intervalMinute, 10);
-  };
+  }
 
   getData();
 
-  var timer;
-  var minute;
-  setInterval(function() {
-    var resetTimer = function() {
-      minute = getIntervalMinute();
-      timer = setInterval(getData, minute * 60 * 1000);
-    };
+  chrome.runtime.onInstalled.addListener(() => {
+    const minute = getIntervalMinute();
+    setCheckSiteIntervl(getIntervalMinute());
+  });
 
-    if (timer === null) {
-      resetTimer();
-    }
-    if (minute !== getIntervalMinute()) {
-      timer.clear();
-      resetTimer();
-    }
-  }, 10 * 1000);
+  function setCheckSiteIntervl(minute) {
+    chrome.alarms.clear(CHECK_SITE_ALARM_NAME);
+    chrome.alarms.create(CHECK_SITE_ALARM_NAME, {delayInMinutes: 1, periodInMinutes: minute});
+    chrome.alarms.onAlarm.addListener(() => {
+      getData();
+    });
+  }
 })();
