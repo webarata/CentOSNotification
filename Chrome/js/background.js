@@ -69,7 +69,7 @@ var CentOSNotif = CentOSNotif || {};
 
   var getIntervalMinute = function() {
     var intervalMinute = CentOSNotif.loadIntervalMinute() || '60';
-    if (intervalMinute == null || intervalMinute.match(/[^0-9]+/)) {
+    if (intervalMinute === undifined || intervalMinute.match(/[^0-9]+/)) {
       intervalMinute = 60;
     }
 
@@ -86,7 +86,7 @@ var CentOSNotif = CentOSNotif || {};
       timer = setInterval(getData, minute * 60 * 1000);
     };
 
-    if (timer == null) {
+    if (timer === null) {
       resetTimer();
     }
     if (minute !== getIntervalMinute()) {

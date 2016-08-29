@@ -1,15 +1,6 @@
 {
-  "nonew": true,
-  "curly": true,
-  "noarg": true,
-  "forin": true,
-  "noempty": true,
-  "eqeqeq": true,
-  "strict": true,
-  "undef": true,
-  "bitwise": true,
+  "node": true,
   "browser": true,
-  "devel": true,
-  "eqnull": true,
-  "expr": true
+  "esnext": true,
+  "sub": true
 }
