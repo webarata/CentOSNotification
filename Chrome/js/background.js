@@ -36,9 +36,10 @@ var CentOSNotif = CentOSNotif || {};
     return true;
   }
 
-  function getData() {
+
+  function checkStatus() {
     CentOSNotif.saveLastUpdateDate(CentOSNotif.formatDate(new Date()));
-    CentOSNotif.ajax(CentOSNotif.url, function(responseText) {
+    CentOSNotif.ajax(CentOSNotif.url, (responseText) => {
       var status = getStatus(responseText);
 
       if (equalStatus(CentOSNotif.loadStatus(), status)) {
@@ -61,11 +62,11 @@ var CentOSNotif = CentOSNotif || {};
     });
   }
 
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.method === 'getHighlight') {
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.method === 'getHighlight') {
       sendResponse({highlight: CentOSNotif.loadHighlight()});
-    } else {
-      sendResponse({});
+    } else if (message.method === 'changeIntervalMinute') {
+      setCheckSiteInterval(Number.parseInt(message.intervalMinute));
     }
   });
 
@@ -75,21 +76,28 @@ var CentOSNotif = CentOSNotif || {};
       intervalMinute = 60;
     }
 
-    return parseInt(intervalMinute, 10);
+    return parseInt(intervalMinute);
   }
 
-  getData();
-
   chrome.runtime.onInstalled.addListener(() => {
+    checkStatus();
+
     const minute = getIntervalMinute();
-    setCheckSiteIntervl(getIntervalMinute());
+    setCheckSiteInterval(getIntervalMinute());
   });
 
-  function setCheckSiteIntervl(minute) {
+  function alarmCallback(alarm) {
+    if (alarm.name === CHECK_SITE_ALARM_NAME) {
+      checkStatus();
+    }
+  }
+
+  // 指定の時間のたびに、新規の情報がないか確認する
+  function setCheckSiteInterval(minute) {
     chrome.alarms.clear(CHECK_SITE_ALARM_NAME);
-    chrome.alarms.create(CHECK_SITE_ALARM_NAME, {delayInMinutes: 1, periodInMinutes: minute});
-    chrome.alarms.onAlarm.addListener(() => {
-      getData();
-    });
+    chrome.alarms.onAlarm.removeListener(alarmCallback);
+
+    chrome.alarms.create(CHECK_SITE_ALARM_NAME, {delayInMinutes: minute, periodInMinutes: minute});
+    chrome.alarms.onAlarm.addListener(alarmCallback);
   }
 })();

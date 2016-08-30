@@ -26,10 +26,9 @@ var CentOSNotif = CentOSNotif || {};
   const intervalMinute = document.getElementById('intervalMinute');
 
   intervalMinute.addEventListener('input', (e) => {
-    cnsoole.info(intervalMinute);
-    const minuteDom = e.target;
-    minuteDom.value = minuteDom.value.replace(/[^0-9]/, '');
-    CentOSNotif.saveIntervalMinute(minuteDom.value === '' ? 60 : minuteDom.value);
+    const $intervalMinute = e.target;
+    $intervalMinute.value = $intervalMinute.value.replace(/[^0-9]/, '');
+    CentOSNotif.saveIntervalMinute($intervalMinute.value === '' ? 60 : $intervalMinute.value);
   });
 
   document.body.onload = () => {

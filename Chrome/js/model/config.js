@@ -62,6 +62,10 @@ var CentOSNotif = CentOSNotif || {};
 
   CentOSNotif.saveIntervalMinute = function(intervalMinute) {
     localStorage.intervalMinute = intervalMinute;
+    chrome.runtime.sendMessage({
+      "method": "changeIntervalMinute",
+      "intervalMinute": intervalMinute
+    });
   };
 
   CentOSNotif.loadIntervalMinute = function() {
