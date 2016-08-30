@@ -23,10 +23,10 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   CentOSNotif.loadStatus = function() {
-    var criticalCount = localStorage.criticalCount || 0;
-    var importantCount = localStorage.importantCount || 0;
-    var moderateCount = localStorage.moderateCount || 0;
-    var lastUpdateMonth = localStorage.lastUpdateMonth || '0';
+    const criticalCount = localStorage.criticalCount || 0;
+    const importantCount = localStorage.importantCount || 0;
+    const moderateCount = localStorage.moderateCount || 0;
+    const lastUpdateMonth = localStorage.lastUpdateMonth || '0';
 
     return {
       counts: [criticalCount, importantCount, moderateCount],
@@ -40,7 +40,7 @@ var CentOSNotif = CentOSNotif || {};
   };
 
   CentOSNotif.loadLastUpdateDate = function() {
-    var lastUpdateDate = localStorage.lastUpdateDate;
+    const lastUpdateDate = localStorage.lastUpdateDate;
     return lastUpdateDate ? lastUpdateDate : '-';
   };
 

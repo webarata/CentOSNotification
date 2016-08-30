@@ -3,14 +3,14 @@ var CentOSNotif = CentOSNotif || {};
 (function() {
   'use strict';
 
-  var MONTH_NAME = [
+  const MONTH_NAME = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
 
   // 当日から、検索するURLを決定する
-  var today = new Date();
-  var dateUrl = today.getFullYear() + '-' + MONTH_NAME[today.getMonth()] + '/date.html';
+  const today = new Date();
+  const dateUrl = today.getFullYear() + '-' + MONTH_NAME[today.getMonth()] + '/date.html';
   CentOSNotif.url = 'https://lists.centos.org/pipermail/centos-announce/' + dateUrl;
 
   /**
@@ -20,7 +20,7 @@ var CentOSNotif = CentOSNotif || {};
    * @returns {number} 出現数
    */
   CentOSNotif.countString = function(text, str) {
-    var count = text.length;
+    const count = text.length;
     return (count - text.replace(new RegExp(str, 'g'), '').length) / str.length;
   };
 
@@ -30,7 +30,7 @@ var CentOSNotif = CentOSNotif || {};
    * @returns {string} YYYYMM形式の文字列
    */
   CentOSNotif.getYearMohth = function(date) {
-    var month = date.getMonth() + 1;
+    const month = date.getMonth() + 1;
     return date.getFullYear().toString() + (month < 10 ? '0' + month : month);
   };
 
@@ -41,7 +41,7 @@ var CentOSNotif = CentOSNotif || {};
    * @param failCallBack Ajaxの失敗の時のコールバック
    */
   CentOSNotif.ajax = function(url, doneCallBack, failCallBack) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(data) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {

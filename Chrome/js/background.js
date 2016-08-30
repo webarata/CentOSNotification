@@ -6,11 +6,11 @@ var CentOSNotif = CentOSNotif || {};
   const CHECK_SITE_ALARM_NAME = 'CHECK_SITE';
 
   function getStatus(responseText) {
-    var criticalCount = CentOSNotif.countString(responseText, 'Critical');
-    var importantCount = CentOSNotif.countString(responseText, 'Important');
-    var moderateCount = CentOSNotif.countString(responseText, 'Moderate');
+    const criticalCount = CentOSNotif.countString(responseText, 'Critical');
+    const importantCount = CentOSNotif.countString(responseText, 'Important');
+    const moderateCount = CentOSNotif.countString(responseText, 'Moderate');
 
-    var lastUpdateMonth = CentOSNotif.getYearMohth(new Date());
+    const lastUpdateMonth = CentOSNotif.getYearMohth(new Date());
 
     return {
       counts: [criticalCount, importantCount, moderateCount],
@@ -19,16 +19,15 @@ var CentOSNotif = CentOSNotif || {};
   }
 
   function equalStatus(status1, status2) {
-    var i;
     if (status1.lastUpdateMonth !== status2.lastUpdateMonth) {
-      for (i = 0; i < status2.counts.length; i++) {
+      for (let i = 0; i < status2.counts.length; i++) {
         if (status2.counts[i] > 0) {
           return false;
         }
       }
       return true;
     }
-    for (i = 0; i < status1.counts.length; i++) {
+    for (let i = 0; i < status1.counts.length; i++) {
       if (status1.counts[i].toString() !== status2.counts[i].toString()) {
         return false;
       }
@@ -40,7 +39,7 @@ var CentOSNotif = CentOSNotif || {};
   function checkStatus() {
     CentOSNotif.saveLastUpdateDate(CentOSNotif.formatDate(new Date()));
     CentOSNotif.ajax(CentOSNotif.url, (responseText) => {
-      var status = getStatus(responseText);
+      const status = getStatus(responseText);
 
       if (equalStatus(CentOSNotif.loadStatus(), status)) {
         chrome.browserAction.setBadgeBackgroundColor({color: '#0000ff'});
@@ -66,17 +65,17 @@ var CentOSNotif = CentOSNotif || {};
     if (message.method === 'getHighlight') {
       sendResponse({highlight: CentOSNotif.loadHighlight()});
     } else if (message.method === 'changeIntervalMinute') {
-      setCheckSiteInterval(Number.parseInt(message.intervalMinute));
+      setCheckSiteInterval(Number.parseInt(message.intervalMinute, 10));
     }
   });
 
   function getIntervalMinute() {
-    var intervalMinute = CentOSNotif.loadIntervalMinute() || '60';
+    let intervalMinute = CentOSNotif.loadIntervalMinute() || '60';
     if (intervalMinute === undefined || intervalMinute.match(/[^0-9]+/)) {
       intervalMinute = 60;
     }
 
-    return parseInt(intervalMinute);
+    return parseInt(intervalMinute, 10);
   }
 
   chrome.runtime.onInstalled.addListener(() => {
