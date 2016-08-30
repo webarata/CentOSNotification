@@ -66,7 +66,7 @@ var CentOSNotif = CentOSNotif || {};
     if (message.method === 'getHighlight') {
       sendResponse({highlight: CentOSNotif.loadHighlight()});
     } else if (message.method === 'changeIntervalMinute') {
-      setCheckSiteInterval(Number.parseInt(message.intervalMinute));
+      setCheckSiteInterval(Number.parseInt(message.intervalMinute, 10));
     }
   });
 
@@ -76,7 +76,7 @@ var CentOSNotif = CentOSNotif || {};
       intervalMinute = 60;
     }
 
-    return parseInt(intervalMinute);
+    return parseInt(intervalMinute, 10);
   }
 
   chrome.runtime.onInstalled.addListener(() => {
